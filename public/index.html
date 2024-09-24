@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, interactive-widget=resizes-content">
+    <meta name="theme-color" content="hsl(240 15% 10%)">
+    <title>SecChat</title>
+    <link rel="stylesheet" href="icons/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="socket.io/socket.io.js"></script>
+    <script defer src="app.js"></script>
+</head>
+<body>
+    <div class="loading-page hide0">
+        <img src="spinner.svg" class="fa-spin-pulse">
+    </div>
+
+    <div class="chat-list-page">
+        <header class="chat-list-hdr">
+            <h2>
+                <i class="fa fa-user-secret"></i>
+                SecChat
+                <i class="fa fa-comment"></i>
+            </h2>
+            <p id="chat-list-hdr-user" dir="auto">User name</p>
+            <div class="input-plc">
+                <i class="far fa-search"></i>
+                <input type="search" placeholder="Search" oninput="searchUsers()">
+            </div>
+        </header>
+
+        <section class="chat-list">
+            <template id="chat-item-tmp">
+                <div class="chat-item" onclick="loadChat(this)">
+                    <div class="chat-avatar female0">
+                        <i class="fa fa-user"></i>
+                        <i class="fa fa-user-hair-long"></i>
+                    </div>
+                    <div class="chat-info">
+                        <p class="chat-list-user one-liner" dir="auto">User name</p>
+                        <p class="chat-list-msg one-liner" dir="auto">User joined!</p>
+                        <div class="typing show0">
+                            <i></i><i></i><i></i>
+                        </div>
+                    </div>
+                    <div class="chat-counter hidden">0</div>
+                </div>
+            </template>
+        </section>
+
+        <p class="chat-list-dev">&copy; 2024 by Pouriya</p>
+    </div>
+
+    <div class="chat-page show0">
+        <header class="chat-hdr">
+            <i class="far fa-arrow-left icon" onclick="closeChat()"></i>
+            <p class="chat-user one-liner" dir="auto">User name</p>
+            <div class="chat-avatar female0">
+                <i class="fa fa-user"></i>
+                <i class="fa fa-user-hair-long"></i>
+            </div>
+        </header>
+
+        <section class="chat-bd">
+            <div class="bbl bbl-in">
+                Lorem ipsum dolor sit amet.
+            </div>
+            <div class="bbl bbl-out">
+                Lorem ipsum dolor sit amet consectetur adipisicing.
+            </div>
+            <div class="bbl bbl-in">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, distinctio.
+            </div>
+            <div class="bbl bbl-out">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur modi debitis explicabo porro cumque ducimus sed beatae vel veritatis, ullam sequi, aliquam ut at dolores pariatur quis error animi quas!
+            </div>
+        </section>
+
+        <div class="typing show0">
+            <i></i><i></i><i></i>
+        </div>
+
+        <form class="chat-ftr" onsubmit="sendMsg()">
+            <div class="scrolldown-btn show0">
+                <i class="far fa-chevron-down"></i>
+            </div>
+            <div class="input-plc">
+                <input type="text" placeholder="Message" dir="auto" required oninput="typing()">
+            </div>
+            <button class="send-btn" onclick="autoFocusMsgInput()">
+                <i class="fa fa-send"></i>
+            </button>
+        </form>
+    </div>
+
+    <div class="notif show0">
+        <p class="one-liner" id="notif-user" dir="auto">User</p>
+        <p class="one-liner" id="notif-msg" dir="auto">You have a new message</p>
+    </div>
+
+    <form class="login-page hidden0">
+        <h1>
+            <i class="fa fa-user-secret"></i>
+            SecChat
+            <i class="fa fa-comment"></i>
+        </h1>
+
+        <section class="online-status-plc">
+            <div class="online-status off"></div>
+            <p>
+                <span id="online-counter">0</span>
+                Online
+            </p>
+        </section>
+
+        <section>
+            <p class="list-item">
+                <i class="far fa-check"></i>
+                No Databases
+            </p>
+            <p class="list-item">
+                <i class="far fa-check"></i>
+                Messages won't store anywhere
+            </p>
+            <p class="list-item">
+                <i class="far fa-check"></i>
+                No way to read your messages
+            </p>
+            <p class="list-item">
+                <i class="far fa-check"></i>
+                It's 100% safe & free
+            </p>
+        </section>
+
+        <section class="login-form">
+            <div class="input-plc">
+                <i class="far fa-user"></i>
+                <input type="text" placeholder="My name is..." required autofocus>
+            </div>
+            <select class="login-gender">
+                <option value="male">♂️ I'm a Boy</option>
+                <option value="female">♀️ I'm a Girl</option>
+            </select>
+        </section>
+
+        <button class="login-btn progress0">
+            <i class="far fa-sign-in"></i>
+            <span>Sign in</span>
+            <div class="loader">
+                <i class="far fa-spinner-third"></i>
+            </div>
+        </button>
+    </form>
+</body>
+</html>
